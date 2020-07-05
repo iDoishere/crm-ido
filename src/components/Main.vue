@@ -21,7 +21,7 @@
       <tbody>
         <tr class="tr" v-for="user in displayedUsers" :key="user.id">
           <td>
-            <IdoInput
+            <Input
               :edit="user.editName"
               :text="user.name"
               @toEdit="AllowOnlyOneInputToEdit(user,'editName')"
@@ -30,7 +30,7 @@
           </td>
 
           <td>
-            <IdoInput
+            <Input
               :edit="user.editLastName"
               :text="user.lastName"
               @toEdit="AllowOnlyOneInputToEdit(user, 'editLastName')"
@@ -39,7 +39,7 @@
           </td>
 
           <td>
-            <IdoInput
+            <Input
               :edit="user.editEmail"
               :text="user.email"
               @toEdit="AllowOnlyOneInputToEdit(user, 'editEmail')"
@@ -48,7 +48,7 @@
           </td>
 
           <td>
-            <IdoInput
+            <Input
               :edit="user.editGender"
               :text="user.gender"
               @toEdit="AllowOnlyOneInputToEdit(user, 'editGender')"
@@ -57,7 +57,7 @@
           </td>
 
           <td>
-            <IdoInput
+            <Input
               :edit="user.editIp"
               :text="user.ip"
               @toEdit="AllowOnlyOneInputToEdit(user, 'editIp')"
@@ -115,14 +115,15 @@
 
 <script>
 import json from "../Mock_Data/MOCK_DATA.json";
-import IdoInput from "./Input.vue";
+import Input from "./Input.vue";
 import AddUser from "./AddUser";
 export default {
   name: "Users",
   components: {
-    IdoInput,
+    Input,
     AddUser
   },
+  // start as component render
   created() {
     this.getUsers();
   },
@@ -281,6 +282,7 @@ export default {
     checkifUserExits(user) {
       return this.data_store.some(el => el.email === user.email);
     },
+    //check input validation
     empty(newUser) {
       if (
         newUser.name == "" ||
